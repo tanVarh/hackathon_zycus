@@ -1,0 +1,38 @@
+{
+  "ticket_id": "TKT-128253",
+  "account_id": "ACC-3737",
+  "category": "needs_info",
+  "priority": "P3",
+  "route_to": "L1_support",
+  "escalate": false,
+  "notify_tam": false,
+  "duplicate_of": null,
+  "needs_clarification": true,
+  "kb_references": [
+    "KB-2914"
+  ],
+  "account_signals": [],
+  "customer_reply": "Thank you for contacting support. To assist you promptly, could you please provide additional details: 1. Which application module or workflow are you attempting to access? 2. What specific error message or symptom appears? 3. How many users are affected, and what was the approximate time of failure?",
+  "internal_note": "Ticket lacks module and specific symptoms ('NOTHING WORKS'). Marked needs_info / needs_clarification at P3 per KB-2914.",
+  "confidence": 0.95,
+  "reasoning_trace": [
+    {
+      "step": 1,
+      "action": "resolve_account",
+      "input": "{\"account_id\": \"ACC-3737\", \"domain\": \"clearwater-manufacturing.example\", \"company_name\": \"Clearwater Manufacturing\"}",
+      "observation": "Found ACC-3737 (Clearwater Manufacturing), Tier: Standard, Renewal: 2027-08-16 (300d), Escalations: 0"
+    },
+    {
+      "step": 2,
+      "action": "get_kb_article",
+      "input": "{\"article_id\": \"KB-2914\"}",
+      "observation": "Article KB-2914: Support priority and escalation policy [current]"
+    },
+    {
+      "step": 3,
+      "action": "finish",
+      "input": "{}",
+      "observation": "Insufficient information provided; request specific clarification under KB-2914."
+    }
+  ]
+}

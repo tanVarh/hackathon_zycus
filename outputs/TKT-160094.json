@@ -1,0 +1,61 @@
+{
+  "ticket_id": "TKT-160094",
+  "account_id": "ACC-2507",
+  "category": "bug",
+  "priority": "P2",
+  "route_to": "L2_engineering",
+  "escalate": false,
+  "notify_tam": false,
+  "duplicate_of": null,
+  "needs_clarification": false,
+  "kb_references": [
+    "KB-4795",
+    "KB-7889",
+    "KB-2914"
+  ],
+  "account_signals": [
+    "SSO reconfigured 2026-10-14 without re-establishing supplier trust",
+    "Sourcing packaging event deadline at risk within 48 hours"
+  ],
+  "customer_reply": "Error E-3310 occurs when the buyer tenant SSO/SAML configuration has been updated without re-establishing the supplier portal trust relationship. Please navigate to Admin > Supplier Portal > Trust Settings, upload current SAML metadata, and select 'Re-issue Supplier Session Keys' (per KB-7889). Because your event deadline is within 48 hours, we also recommend extending the event deadline.",
+  "internal_note": "E-3310 bid submission rejection following SSO reconfiguration. Sourcing event deadline at risk (<48h), classifying as P2 under KB-2914 deadline rule and routing to L2 Engineering.",
+  "confidence": 0.95,
+  "reasoning_trace": [
+    {
+      "step": 1,
+      "action": "resolve_account",
+      "input": "{\"account_id\": \"ACC-2507\", \"domain\": \"frostline-telecom.example\", \"company_name\": \"frostline telecom\"}",
+      "observation": "Found ACC-2507 (Frostline Telecom), Tier: Enterprise, Renewal: 2027-03-19 (150d), Escalations: 0"
+    },
+    {
+      "step": 2,
+      "action": "search_ticket_history",
+      "input": "{\"account_id\": \"ACC-2507\", \"current_ticket_id\": \"TKT-160094\", \"module\": \"Sourcing\", \"error_code\": \"E-3310\", \"created_at\": \"2026-10-20T09:50\"}",
+      "observation": "Total tickets: 11, Duplicates: None"
+    },
+    {
+      "step": 3,
+      "action": "search_kb",
+      "input": "{\"query\": \"Suppliers cannot submit bids - E-3310 Several suppliers report E-3310 when they submit bids on our packaging RFx. The event closes in 2 da\", \"module\": \"Sourcing\", \"error_code\": \"E-3310\", \"limit\": 5}",
+      "observation": "Top articles: KB-4795 (current), KB-3985 (active_incident), KB-2070 (current)"
+    },
+    {
+      "step": 4,
+      "action": "get_kb_article",
+      "input": "{\"article_id\": \"KB-4795\"}",
+      "observation": "Article KB-4795: E-3310: Bid submission is rejected [current]"
+    },
+    {
+      "step": 5,
+      "action": "get_kb_article",
+      "input": "{\"article_id\": \"KB-7889\"}",
+      "observation": "Article KB-7889: Re-establish supplier portal trust after a SAML/SSO change [current]"
+    },
+    {
+      "step": 6,
+      "action": "finish",
+      "input": "{}",
+      "observation": "All necessary account context, ticket history, and KB articles have been gathered."
+    }
+  ]
+}

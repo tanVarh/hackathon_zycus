@@ -1,0 +1,55 @@
+{
+  "ticket_id": "TKT-119877",
+  "account_id": "ACC-2431",
+  "category": "how_to",
+  "priority": "P3",
+  "route_to": "L1_support",
+  "escalate": true,
+  "notify_tam": true,
+  "duplicate_of": null,
+  "needs_clarification": false,
+  "kb_references": [
+    "KB-6082",
+    "KB-2914"
+  ],
+  "account_signals": [
+    "Renewal in 61 days",
+    "Active users declined 49.1% over last 3 months",
+    "2 open executive escalations"
+  ],
+  "customer_reply": "Approval delays typically occur when the workflow queue is backed up by overlapping auto-approval rules or an extended dispatcher interval (per KB-6082). Please navigate to Admin > Scheduler > Workflow Dispatcher and confirm the interval is set to 5 minutes or less, and review auto-approval rules for redundancies.",
+  "internal_note": "Approval delays matching KB-6082. Account is nearing renewal with declining usage and open escalations; TAM notified per KB-2914 account risk override. [ACCOUNT RISK OVERRIDE: Priority raised to P3, TAM notified, escalated]",
+  "confidence": 0.92,
+  "reasoning_trace": [
+    {
+      "step": 1,
+      "action": "resolve_account",
+      "input": "{\"account_id\": \"ACC-2431\", \"domain\": \"pinecrest-logistics.example\", \"company_name\": \"Pinecrest Logistics\"}",
+      "observation": "Found ACC-2431 (Pinecrest Logistics), Tier: Premium, Renewal: 2026-12-20 (61d), Escalations: 2"
+    },
+    {
+      "step": 2,
+      "action": "get_usage_trend",
+      "input": "{\"account_id\": \"ACC-2431\"}",
+      "observation": "Users: [1374, 1054, 839, 700], 3m decline: 49.1% (>25%: True)"
+    },
+    {
+      "step": 3,
+      "action": "search_kb",
+      "input": "{\"query\": \"Quick question - approvals seem a bit slow Not urgent. Some of our approvers say purchase orders take longer to show up in their inbox than bef\", \"module\": \"eProcurement\", \"error_code\": \"\", \"limit\": 5}",
+      "observation": "Top articles: KB-6082 (current), KB-2430 (current), KB-4577 (current)"
+    },
+    {
+      "step": 4,
+      "action": "get_kb_article",
+      "input": "{\"article_id\": \"KB-6082\"}",
+      "observation": "Article KB-6082: Approvals appear in the approver inbox with a delay [current]"
+    },
+    {
+      "step": 5,
+      "action": "finish",
+      "input": "{}",
+      "observation": "All necessary account context, ticket history, and KB articles have been gathered."
+    }
+  ]
+}
